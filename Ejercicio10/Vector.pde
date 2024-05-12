@@ -9,4 +9,8 @@ class Vector {
     this.puntoB = puntoB;
     this.puntoC = puntoC;
   }
+  public void display() {
+    line(puntoA.x,puntoA.y,puntoB.x,puntoB.y);
+    line(puntoB.x,puntoB.y,puntoC.x,puntoC.y);
+  }
 }

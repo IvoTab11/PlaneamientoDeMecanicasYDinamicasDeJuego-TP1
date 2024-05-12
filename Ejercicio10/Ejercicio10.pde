@@ -17,4 +17,6 @@ public void draw() {
   point(puntoA.x,puntoA.y);
   point(puntoB.x,puntoB.y);
   point(puntoC.x,puntoC.y);
+  strokeWeight(0.5);
+  vector.display();
 }
