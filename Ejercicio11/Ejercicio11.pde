@@ -5,7 +5,8 @@ private PImage enemigo;
 private PVector posicionEnemigo;
 private PImage personaje;
 private PImage escenario;
-
+private PVector posicionBolaDeFuego;
+private BolaDeFuego bolaDeFuego;
 public void setup(){
   size(600,600);
   vectorPersonaje = new Vector(new PVector(0,0),new PVector(20,0));
@@ -15,6 +16,7 @@ public void setup(){
   personaje = loadImage("cazador.png");
   escenario = loadImage("escenario2.jpg");
   posicionEnemigo = new PVector(width/2,height/2);
+  posicionBolaDeFuego = new PVector(width/2,height/2);
 }
 
 public void draw(){
@@ -32,6 +34,10 @@ public void draw(){
   vectorPersonaje.display();
   dibujarVectorEnemigoPersonaje();
   detectar();
+  if (bolaDeFuego != null) {
+  bolaDeFuego.mover();
+  bolaDeFuego.display();
+  }
 }
 public void dibujarEnemigo(){
   enemigo.resize(120,120);
@@ -49,5 +55,6 @@ public void detectar(){
   text(productoPunto,20,350);
   if(productoPunto>0.866f){
     text("detectado",100,40);
+    bolaDeFuego = new BolaDeFuego(posicionBolaDeFuego, PVector.sub(vectorPersonaje.getOrigen(), posicionEnemigo),new PVector(5,0));
   }
 }
