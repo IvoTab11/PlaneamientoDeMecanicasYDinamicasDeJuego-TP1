@@ -68,6 +68,7 @@ class Tanque{
     return this.direccion;
   }
   
+  
   public void display(){
    pushMatrix();
     translate(this.posicion.x, this.posicion.y);
