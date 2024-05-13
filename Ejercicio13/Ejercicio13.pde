@@ -1,15 +1,18 @@
 PVector posicion;
 PVector velocidad;
 float radio = 20;
-
+PImage fondo;
 void setup() {
-  size(400, 400);
+  size(400, 500);
   posicion = new PVector(width / 2, height / 2);
   velocidad = new PVector(5, 4);
+  fondo = loadImage("cancha.jpg");
 }
 
 void draw() {
-  background(255);
+  fondo.resize(400,500);
+  imageMode(CENTER);
+  background(fondo);
   
   posicion.add(velocidad);
   
@@ -24,5 +27,6 @@ void draw() {
     velocidad.sub(PVector.mult(normalVertical, 2 * productoPuntoVertical));
   }
   
+  fill(0);
   ellipse(posicion.x, posicion.y, radio * 2, radio * 2);
 }
