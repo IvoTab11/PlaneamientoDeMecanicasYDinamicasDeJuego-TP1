@@ -1,5 +1,6 @@
 private Vector vectorPersonaje;
 private Vector vectorEnemigo;
+private Vector vectorEnemigoPersonaje;
 private PImage enemigo;
 private PVector posicionEnemigo;
 private PImage personaje;
@@ -9,6 +10,7 @@ public void setup(){
   size(600,600);
   vectorPersonaje = new Vector(new PVector(0,0),new PVector(20,0));
   vectorEnemigo = new Vector(new PVector(0,0), new PVector(50,0));
+  vectorEnemigoPersonaje = new Vector();
   enemigo = loadImage("azmodan.png");
   personaje = loadImage("cazador.png");
   escenario = loadImage("escenario2.jpg");
@@ -28,9 +30,15 @@ public void draw(){
   dibujarEnemigo();
   vectorEnemigo.display();
   vectorPersonaje.display();
+  dibujarVectorEnemigoPersonaje();
 }
 public void dibujarEnemigo(){
   enemigo.resize(120,120);
   imageMode(CENTER);
   image(enemigo, posicionEnemigo.x,posicionEnemigo.y);
+}
+public void dibujarVectorEnemigoPersonaje(){
+  vectorEnemigoPersonaje.setOrigen(posicionEnemigo);
+  vectorEnemigoPersonaje.setDestino(PVector.sub(vectorPersonaje.getOrigen(),posicionEnemigo).normalize());
+  vectorEnemigoPersonaje.display();
 }
