@@ -33,6 +33,14 @@ public void draw(){
     tanque.move(3); 
   }
   spawner.actualizarBalas();
+  
+  fill(0, 0, 255);
+  textSize(20);
+  if (esVisible) {
+    text("Es detectado", 10, 20);
+  } else {
+    text("No es detectado", 10, 20);
+  }
 }
 
 boolean validarRangoDeVision() {

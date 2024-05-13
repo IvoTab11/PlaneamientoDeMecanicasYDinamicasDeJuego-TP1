@@ -87,24 +87,24 @@ class Tanque{
   public void display(){
    pushMatrix();
     translate(this.posicion.x, this.posicion.y);
-    rotate(radians(direccion * 90)); // Rotar el tanque segun la dirección
+    rotate(radians(direccion * 90));
     imageMode(CENTER);
-    image(this.imagen, 0, 0, 100, 100); // Dibujar el tanque
+    image(this.imagen, 0, 0, 100, 100);
     popMatrix();
   }
   
   public void move(int direccion) {
     switch (direccion) {
-      case 1: // Arriba
+      case 1:
         posicion.y -= velocidad.y;
         break;
-      case 2: // Derecha
+      case 2: 
         posicion.x += velocidad.x;
         break;
-      case 3: // Abajo
+      case 3: 
         posicion.y += velocidad.y;
         break;
-      case 4: // Izquierda
+      case 4:
         posicion.x -= velocidad.x;
         break;
     }
