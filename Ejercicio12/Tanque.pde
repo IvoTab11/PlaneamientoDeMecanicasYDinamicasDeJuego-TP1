@@ -12,7 +12,44 @@ class Tanque{
   
   }
   
+  public boolean esVisible (TanqueEnemigo tanqueEnemigo){
+    boolean esVisible = false;
+    PVector direccionDeTanqueEnemigoVector = PVector.sub(tanqueEnemigo.getPosicion(),this.posicion);
+    direccionDeTanqueEnemigoVector.normalize();
   
+    PVector direcciontoViewVector= new PVector();
+  
+    switch(this.direccion){
+      case 0:{
+        direcciontoViewVector = new PVector(0,-1,0);
+        break;
+      }
+    }
+  
+    float dotProduct = PVector.dot(direcciontoViewVector,direccionDeTanqueEnemigoVector);
+    if (dotProduct > 0.8){
+      esVisible = true;
+      spin(direcciontoViewVector,direccionDeTanqueEnemigoVector);
+    }
+    return esVisible;
+  }
+  
+  public void spin(PVector direcciontoViewVector,PVector direccionDeTanqueEnemigoVector){
+    float angulo = PVector.angleBetween(direcciontoViewVector,direccionDeTanqueEnemigoVector);
+    PVector rotacionEje = direcciontoViewVector.cross(direccionDeTanqueEnemigoVector);
+    int clockWise =1;
+  
+    if (rotacionEje.z < 0){
+      clockWise=-1;
+    }
+  
+    pushMatrix();
+    imageMode(CENTER);
+    translate(this.posicion.x,this.posicion.y);
+    rotate(angulo*clockWise);
+    image(this.imagen,0,0,this.imagen.width* 0.20,this.imagen.height* 0.20);
+    popMatrix();
+  }
   
   
   public void setPosicion(PVector posicion){
@@ -32,8 +69,12 @@ class Tanque{
   }
   
   public void display(){
+   pushMatrix();
+    translate(this.posicion.x, this.posicion.y);
+    rotate(radians(direccion * 90)); // Rotar el tanque segun la dirección
     imageMode(CENTER);
-    image(this.imagen, 0, 0, 100, 100);
+    image(this.imagen, 0, 0, 100, 100); // Dibujar el tanque
+    popMatrix();
   }
 
 }
