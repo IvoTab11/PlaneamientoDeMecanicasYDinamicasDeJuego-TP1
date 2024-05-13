@@ -31,6 +31,7 @@ public void draw(){
   vectorEnemigo.display();
   vectorPersonaje.display();
   dibujarVectorEnemigoPersonaje();
+  detectar();
 }
 public void dibujarEnemigo(){
   enemigo.resize(120,120);
@@ -41,4 +42,12 @@ public void dibujarVectorEnemigoPersonaje(){
   vectorEnemigoPersonaje.setOrigen(posicionEnemigo);
   vectorEnemigoPersonaje.setDestino(PVector.sub(vectorPersonaje.getOrigen(),posicionEnemigo).normalize());
   vectorEnemigoPersonaje.display();
+}
+public void detectar(){
+  float productoPunto = vectorEnemigo.obtenerProductoPunto(vectorEnemigoPersonaje);
+  fill(255);
+  text(productoPunto,20,350);
+  if(productoPunto>0.866f){
+    text("detectado",100,40);
+  }
 }
