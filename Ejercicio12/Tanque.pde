@@ -77,5 +77,22 @@ class Tanque{
     image(this.imagen, 0, 0, 100, 100); // Dibujar el tanque
     popMatrix();
   }
+  
+  public void move(int direccion) {
+    switch (direccion) {
+      case 1: // Arriba
+        posicion.y -= velocidad.y;
+        break;
+      case 2: // Derecha
+        posicion.x += velocidad.x;
+        break;
+      case 3: // Abajo
+        posicion.y += velocidad.y;
+        break;
+      case 4: // Izquierda
+        posicion.x -= velocidad.x;
+        break;
+    }
+  }
 
 }

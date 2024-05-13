@@ -1,11 +1,13 @@
 private Escenario escenario;
 private Tanque tanque;
 private TanqueEnemigo tanqueEnemigo;
+private JoyPad joyPad;
 public void setup(){
   size(600, 600);
   escenario = new Escenario();
   tanque = new Tanque(new PVector(300, 450));
   tanqueEnemigo = new TanqueEnemigo(new PVector(300, 100));
+  joyPad = new JoyPad();
 }
 
 public void draw(){
@@ -14,6 +16,19 @@ public void draw(){
   boolean esVisible = validarRangoDeVision();
   if (!esVisible) {
     tanque.display();
+  }
+  displayVectores();
+  if (joyPad.isDerechaPresionado()) {
+    tanque.move(2); 
+  }
+  if (joyPad.isIzquierdaPresionado()) {
+    tanque.move(4); 
+  }
+    if (joyPad.isArribaPresionado()) {
+    tanque.move(1); 
+  }
+  if (joyPad.isAbajoPresionado()) {
+    tanque.move(3); 
   }
 }
 
@@ -46,5 +61,35 @@ public void displayVectores() {
       tanque.getPosicion().y + proyeccionAxysVisualizacion.y);
       break;
     }
+  }
+}
+public void keyPressed() {
+  if (key == 'd' || keyCode == RIGHT) {
+    joyPad.setPresionoDerecha(true);
+  }
+  if (key == 'a' || keyCode == LEFT) {
+    joyPad.setPresionoIzquierda(true);
+  }
+  if (key == 'w' || keyCode == UP) {
+    joyPad.setPresionoArriba(true);
+  }
+  if (key == 's' || keyCode == DOWN) {
+    joyPad.setPresionoAbajo(true);
+  }
+
+}
+
+public void keyReleased() {
+  if (key == 'd' || keyCode == RIGHT) {
+    joyPad.setPresionoDerecha(false);
+  }
+  if (key == 'a' || keyCode == LEFT) {
+    joyPad.setPresionoIzquierda(false);
+  }
+    if (key == 'w' || keyCode == UP) {
+    joyPad.setPresionoArriba(false);
+  }
+  if (key == 's' || keyCode == DOWN) {
+    joyPad.setPresionoAbajo(false);
   }
 }
