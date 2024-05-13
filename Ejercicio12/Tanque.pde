@@ -68,6 +68,21 @@ class Tanque{
     return this.direccion;
   }
   
+  public void disparar(SpawnerBalas spawner){
+    
+  PVector direccionVector= PVector.sub(tanqueEnemigo.getPosicion(),tanque.getPosicion()).normalize().mult(50);
+  PVector proyeccionDireccionVector = PVector.add(tanque.getPosicion(),direccionVector); 
+ 
+    Bala unaBala = new Bala(new PVector(this.posicion.x,this.posicion.y),proyeccionDireccionVector);
+    Bala[] balas = spawner.getBalas();
+    for(int i=0;i<balas.length;i++){
+      if(balas[i]==null){
+        balas[i]=unaBala;
+        break;
+      }
+    }
+    spawner.setBalas(balas);
+  }
   
   public void display(){
    pushMatrix();

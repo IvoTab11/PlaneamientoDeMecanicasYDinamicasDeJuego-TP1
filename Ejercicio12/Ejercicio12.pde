@@ -2,11 +2,13 @@ private Escenario escenario;
 private Tanque tanque;
 private TanqueEnemigo tanqueEnemigo;
 private JoyPad joyPad;
+private SpawnerBalas spawner;
 public void setup(){
   size(600, 600);
   escenario = new Escenario();
   tanque = new Tanque(new PVector(300, 450));
   tanqueEnemigo = new TanqueEnemigo(new PVector(300, 100));
+  spawner = new SpawnerBalas();
   joyPad = new JoyPad();
 }
 
@@ -30,6 +32,7 @@ public void draw(){
   if (joyPad.isAbajoPresionado()) {
     tanque.move(3); 
   }
+  spawner.actualizarBalas();
 }
 
 boolean validarRangoDeVision() {
@@ -75,6 +78,10 @@ public void keyPressed() {
   }
   if (key == 's' || keyCode == DOWN) {
     joyPad.setPresionoAbajo(true);
+  }
+  if(keyCode == ENTER){
+    println("Se presionó la tecla");
+    tanque.disparar(spawner);
   }
 
 }
