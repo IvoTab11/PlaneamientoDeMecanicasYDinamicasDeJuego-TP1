@@ -3,6 +3,7 @@ class BolaDeFuego{
   private PVector velocidad;
   private PVector direccion;
   private PImage imagen;
+  private boolean detectado=true;
 
   public BolaDeFuego(PVector posicion, PVector direccion,PVector velocidad){
     this.posicion=posicion;
@@ -11,13 +12,23 @@ class BolaDeFuego{
   }
   
   public void mover(){
-    this.posicion.add(velocidad);
+    if(detectado==true){
+      this.posicion.add(velocidad);
+    }
   }
   
   public void display(){
    imagen=loadImage("bolaFuego.png");
    imagen.resize(60,60);
    image(imagen,posicion.x,posicion.y);
+   if(this.posicion.x>width){
+     this.posicion.x=-40;
+     detectado=false;
+   }
+   if(this.posicion.x==-30){
+     this.posicion.x=width/2;
+     this.posicion.add(velocidad);
+   }
   }
 
 
